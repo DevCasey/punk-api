@@ -14,15 +14,17 @@ class App extends Component {
 
   componentDidMount() {
     fetch('https://api.punkapi.com/v2/beers')
-      .then((response) => { return response.json()} )
-      .then(json =>       { this.setState({beers: json})} )
-      .then(console.log(this.state.beers))
+      .then(response => response.json())
+      .then(data => this.setState({data}))
+      // .then((response) => { return response.json()} )
+      // .then(json =>       { this.setState({beers: json})} )
+      // .then(console.log(this.state.beers))
       .catch(error => console.log('parsing failed', error))
   }
 
 
 
-  // fetchBeer() {
+  // fetchBeer() 
   //   fetch('https://api.punkapi.com/v2/beers')
   //     .then((response) => { return response.json() })
   //     .then((response) => { console.log(response) })
@@ -34,7 +36,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-            <button onClick={this.displayBeer}>Fetch Beer</button> 
+            <button onClick={this.state.beers.map((item, index) => {
+              return <li key={index}>{item}</li>
+            })}>Fetch Beer</button> 
           {/* <button onClick={this.}>Fetch Beer</button> */}
         </header>
       </div>
